@@ -4,6 +4,12 @@ A free media library for folders on your Mac. Browse photos and videos, make pho
 
 [Website](https://barryanders.github.io/anthora/) · [Releases](https://github.com/barryanders/Anthora/releases) · [Issues](https://github.com/barryanders/Anthora/issues)
 
+## Screenshots
+
+![Media library](docs/screenshots/media-library.jpg)
+
+![Photo book designs](docs/screenshots/books.jpg)
+
 ## Build
 
 Requires macOS 14 or later, Apple silicon, Swift 6, Node.js, and Homebrew Python 3.14. The source contains the native app and workers, browser interface, and local service. It excludes private deployment configuration, catalogs, media, and model weights.
