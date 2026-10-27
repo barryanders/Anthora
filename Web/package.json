@@ -1,0 +1,19 @@
+{
+  "name": "anthora-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.0.3",
+    "jspdf": "4.2.1",
+    "lucide-react": "^0.468.0",
+    "masonic": "^4.1.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "vite": "^8.1.4"
+  }
+}

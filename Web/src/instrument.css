@@ -1,0 +1,244 @@
+/* Shared manufactured surfaces. Image and book artwork keep their own colors. */
+:root[data-theme="instrument"] {
+  color-scheme: light;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --bg: #e9e9e6;
+  --panel: #dedfdb;
+  --paper: #f4f4f1;
+  --text: #242725;
+  --muted: #616660;
+  --line: #c4c7c0;
+  --glass: var(--paper);
+  --accent: #275dca;
+  --semantic-accent: var(--accent);
+  --semantic-accent-strong: var(--accent);
+  --semantic-soft: var(--panel);
+  --semantic-border: var(--line);
+  --status-blue-soft: var(--panel);
+  --edge-light: #fff;
+  --control-bottom: #e4e5e0;
+  --shadow: 0 2px 4px #00000012;
+  --raised: inset 0 1px 0 var(--edge-light), 0 1px 1px #00000018, 0 2px 3px #00000009;
+  --recessed: inset 0 1px 3px #00000014, 0 1px 0 var(--edge-light);
+}
+:root[data-theme="instrument"][data-appearance="dark"] {
+  color-scheme: dark;
+  --bg: #202220; --panel: #292c29; --paper: #333632;
+  --text: #f1f2ec; --muted: #b2b7ae; --line: #484d45;
+  --edge-light: #53594f; --control-bottom: #2b2e29; --accent: #8babff;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="instrument"][data-appearance="system"] {
+    color-scheme: dark;
+    --bg: #202220; --panel: #292c29; --paper: #333632;
+    --text: #f1f2ec; --muted: #b2b7ae; --line: #484d45;
+    --edge-light: #53594f; --control-bottom: #2b2e29; --accent: #8babff;
+  }
+}
+:root[data-theme="instrument"] body { background: var(--bg); }
+:root[data-theme="instrument"] :is(.sidebar, .topbar) {
+  background: var(--panel); backdrop-filter: none;
+  box-shadow: inset 0 1px 0 var(--edge-light);
+}
+:root[data-theme="instrument"] .sidebar { border-right: 1px solid var(--line); }
+:root[data-theme="instrument"] .topbar { padding-inline: 24px; }
+:root[data-theme="instrument"] :is(button, a, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 3px;
+}
+:root[data-theme="instrument"] :is(.icon-button, .sidebar nav button, .sidebar-bottom button,
+  .compact-nav button, .gallery-controls button, .segmented button, .filter-row button,
+  .source-open-primary, .source-foot button, .settings-license-button, .dialog-actions button,
+  .search-hint button, .bk-btn, .bk-icon-btn, .viewer-controls button, .viewer-zoom-presets button) {
+  border: 1px solid var(--line); border-radius: 6px;
+  background: linear-gradient(var(--paper), var(--control-bottom));
+  box-shadow: var(--raised); color: var(--text);
+  transition: box-shadow 100ms, background 100ms, color 100ms;
+}
+:root[data-theme="instrument"] :is(.sidebar nav button, .sidebar-bottom button) {
+  min-height: 38px; padding: 8px 11px; font-size: 13px;
+  border-color: transparent; background: transparent; box-shadow: none;
+}
+:root[data-theme="instrument"] .sidebar nav { gap: 5px; }
+:root[data-theme="instrument"] :is(.sidebar nav button:hover, .sidebar-bottom button:hover) {
+  border-color: var(--line); background: var(--paper); box-shadow: var(--raised);
+}
+:root[data-theme="instrument"] :is(.sidebar nav button.active, .sidebar-bottom button.active) {
+  border-color: var(--line); background: var(--paper); box-shadow: var(--recessed); color: var(--text);
+}
+:root[data-theme="instrument"] :is(.sidebar nav button.active, .sidebar-bottom button.active)::after {
+  content: ""; width: 5px; height: 5px; border-radius: 50%; margin-left: auto;
+  background: var(--accent); box-shadow: 0 0 0 2px var(--panel); flex-shrink: 0;
+}
+:root[data-theme="instrument"] :is(.segmented, .layout-switch) {
+  padding: 3px; gap: 3px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--panel); box-shadow: var(--recessed); margin-top: 0;
+}
+:root[data-theme="instrument"] :is(.segmented button, .filter-row button) { text-transform: none; }
+:root[data-theme="instrument"] :is(.segmented button.selected, .gallery-controls button.selected, .filter-row button.selected, .bk-btn-primary) {
+  color: var(--accent); background: var(--paper); border-color: var(--accent); box-shadow: var(--recessed);
+}
+:root[data-theme="instrument"] button:active:not(:disabled):not(.media-card):not(.collection-card) {
+  box-shadow: var(--recessed); transform: translateY(1px);
+}
+:root[data-theme="instrument"] button:disabled { opacity: .45; cursor: not-allowed; }
+:root[data-theme="instrument"] :is(input:not([type="checkbox"]):not([type="range"]), textarea, select,
+  .quick-search, .search-pill) {
+  background: var(--bg); border: 1px solid var(--line); border-radius: 6px;
+  box-shadow: var(--recessed); color: var(--text);
+}
+:root[data-theme="instrument"] :is(.quick-search input, .search-pill input) {
+  border: 0; box-shadow: none; background: none;
+}
+:root[data-theme="instrument"] :is(input[type="checkbox"], input[type="range"], progress) { accent-color: var(--accent); }
+:root[data-theme="instrument"] .workspace .page { padding: 26px 28px 48px; }
+:root[data-theme="instrument"] .workspace :is(.page-heading h1, .cd-header h1, .bk-intro h1) {
+  font-size: clamp(26px, 3vw, 34px); font-weight: 600; letter-spacing: -.035em;
+}
+:root[data-theme="instrument"] .workspace .page-heading { margin-bottom: 22px; }
+:root[data-theme="instrument"] :is(.eyebrow, .saved-searches>header, .rotary-label, .source-metrics small) {
+  font-family: ui-monospace, "SFMono-Regular", monospace; font-size: 10px;
+  letter-spacing: .09em; text-transform: uppercase; color: var(--muted);
+}
+:root[data-theme="instrument"] .workspace :is(.source-card, .settings-list, .duplicate-group,
+  .care-task-list, .care-primary-task, .library-home-summary, .first-run-hero) {
+  border: 1px solid var(--line); border-radius: 9px; background: var(--paper);
+  box-shadow: inset 0 1px 0 var(--edge-light), var(--shadow);
+}
+:root[data-theme="instrument"] .workspace :is(.source-card, .duplicate-group, .care-primary-task) { padding: 18px; }
+:root[data-theme="instrument"] .care-task-icon { color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 7px; }
+:root[data-theme="instrument"] .care-task-list>button { padding: 16px; }
+:root[data-theme="instrument"] .settings-row { padding: 18px; }
+:root[data-theme="instrument"] :is(.source-icon, .license-icon) { background: var(--panel); color: var(--text); border-radius: 7px; }
+:root[data-theme="instrument"] :is(.source-status, .license-active) { color: var(--text); }
+:root[data-theme="instrument"] .source-status.connected { display: inline-flex; gap: 6px; align-items: center; }
+:root[data-theme="instrument"] .source-status.connected::before {
+  content: ""; width: 5px; height: 5px; border-radius: 50%; background: #378151;
+}
+:root[data-theme="instrument"] :is(.modal-backdrop, .dialog-backdrop, .license-backdrop) { backdrop-filter: none; background: #10131070; }
+:root[data-theme="instrument"] :is(.search-panel, .settings-panel, .dialog-panel, .license-panel,
+  .sort-options, .saved-search-menu, .quick-search-results, .bk-modal, .bk-popover) {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: inset 0 1px 0 var(--edge-light), 0 8px 24px #00000026; backdrop-filter: none;
+}
+:root[data-theme="instrument"] :is(.cover, .media-card, .rail-scroll img) { border-radius: 5px; box-shadow: none; }
+:root[data-theme="instrument"] .cover { aspect-ratio: 1; border: 1px solid var(--line); }
+:root[data-theme="instrument"] .collection-grid { gap: 20px; }
+:root[data-theme="instrument"] .collection-card:hover .cover { transform: none; box-shadow: 0 2px 5px #00000020; }
+:root[data-theme="instrument"] :is(.media-card:hover img, .collection-card:hover img) { transform: none; }
+:root[data-theme="instrument"] .collection-card .cover.face-focused img { transform: scale(var(--cover-face-scale)); }
+:root[data-theme="instrument"] .rail { margin-top: 32px; }
+:root[data-theme="instrument"] .gallery-controls { gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+:root[data-theme="instrument"] .gallery-controls button { min-height: 32px; font-size: 11px; text-transform: none; letter-spacing: 0; }
+:root[data-theme="instrument"] .media-actions { background: #242725; backdrop-filter: none; }
+:root[data-theme="instrument"] .viewer { background: #171917; }
+:root[data-theme="instrument"] :is(.viewer-top, .viewer-controls, .viewer-details) { background: #242724; backdrop-filter: none; }
+:root[data-theme="instrument"] .viewer-top { border-bottom: 1px solid #444944; }
+:root[data-theme="instrument"] .viewer-main { padding-top: 64px; }
+:root[data-theme="instrument"] .bk-workspace :is(.bk-topbar, .bk-toolbar, .bk-sidebar, .bk-photo-drawer, .bk-editor-controls) {
+  background: var(--panel); border-color: var(--line); backdrop-filter: none;
+}
+:root[data-theme="instrument"] .bk-workspace :is(.bk-template-card, .bk-project-card) {
+  border: 1px solid var(--line); border-radius: 8px; background: var(--paper); box-shadow: var(--shadow);
+}
+:root[data-theme="instrument"] .rotary-control { display: flex; align-items: center; gap: 8px; padding: 0 8px; }
+.rotary-dial { width: 38px; height: 38px; flex-shrink: 0; padding: 4px; border-radius: 50%; border: 1px solid var(--line); background: var(--panel); box-shadow: var(--recessed); cursor: ns-resize; touch-action: none; }
+.rotary-cap { display: block; position: relative; width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(135deg, var(--paper), var(--control-bottom)); border: 1px solid var(--line); box-shadow: var(--raised); }
+.rotary-cap i { position: absolute; width: 2px; height: 8px; top: 3px; left: calc(50% - 1px); border-radius: 1px; background: var(--accent); }
+.rotary-value { display: flex; align-items: center; gap: 4px; font: 10px ui-monospace, monospace; color: var(--muted); }
+.rotary-value input { width: 50px; padding: 5px 3px; text-align: center; font: 11px ui-monospace, monospace; appearance: textfield; }
+.rotary-value input::-webkit-inner-spin-button { appearance: none; }
+.rotary-dial:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 700px) {
+  :root[data-theme="instrument"] .workspace .page { padding: 20px 16px 40px; }
+  :root[data-theme="instrument"] .topbar { padding-inline: 12px; }
+  :root[data-theme="instrument"] .gallery-controls { justify-content: flex-start; }
+  :root[data-theme="instrument"] .rotary-control { padding-left: 0; }
+  :root[data-theme="instrument"] .gallery-controls button { min-height: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme="instrument"] *, :root[data-theme="instrument"] *::before, :root[data-theme="instrument"] *::after {
+    animation: none !important; transition: none !important;
+  }
+}
+/* Shared dialogs and the Books workspace use the same parts as the shell. */
+:root[data-theme="instrument"] * { backdrop-filter: none; }
+:root[data-theme="instrument"] .quick-search input:not([type="checkbox"]):not([type="range"]) {
+  background: none; border: 0; box-shadow: none; border-radius: 0; min-height: 30px;
+}
+:root[data-theme="instrument"] select { min-height: 34px; padding: 6px 10px; }
+:root[data-theme="instrument"] .settings-row .segmented { width: auto; justify-content: flex-end; }
+:root[data-theme="instrument"] :is(.license-settings-row, .free-edition-banner, .collection-utilities>button,
+  .home-actions>button, .bk-notice, .bk-canvas-area, .bk-template-scene) { background: var(--panel); }
+:root[data-theme="instrument"] :is(.action-dialog, .source-dialog, .license-dialog, .bk-review) {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: inset 0 1px 0 var(--edge-light), 0 8px 24px #00000026;
+}
+:root[data-theme="instrument"] :is(.first-run-primary, .source-add, .source-empty button,
+  .source-dialog-actions button, .action-dialog-buttons button, .bulk-action,
+  .bk-primary, .bk-secondary, .bk-icon, .bk-segmented button, .bk-layout-options>button,
+  .bk-format-picker button, .viewer-transform-tools button) {
+  border: 1px solid var(--line); border-radius: 6px;
+  background: linear-gradient(var(--paper), var(--control-bottom)); color: var(--text); box-shadow: var(--raised);
+}
+:root[data-theme="instrument"] :is(.first-run-primary, .source-add, .action-dialog-buttons .primary, .bk-primary) {
+  color: var(--accent); border-color: var(--accent);
+}
+:root[data-theme="instrument"] :is(.bk-inspector, .bk-filmstrip, .bk-photos-panel, .bk-review>header) { background: var(--panel); }
+:root[data-theme="instrument"] :is(.bk-template-badge, .bk-slot-action) { background: var(--paper); color: var(--text); border: 1px solid var(--line); }
+:root[data-theme="instrument"] :is(.bk-layout-options>button.is-selected, .bk-format-picker button[aria-pressed="true"], .bk-segmented button.is-active) {
+  border-color: var(--accent); background: var(--paper); color: var(--accent); box-shadow: var(--recessed);
+}
+:root[data-theme="instrument"] .welcome-intro { padding: 24px 0 30px; text-align: left; max-width: 660px; margin: 0; }
+:root[data-theme="instrument"] .welcome-intro h1 { font-size: clamp(30px, 4vw, 44px); letter-spacing: -.04em; margin: 18px 0; }
+:root[data-theme="instrument"] .welcome-intro p { font-size: 14px; margin: 0 0 24px; }
+:root[data-theme="instrument"] .welcome-icon { width: 42px; height: 42px; }
+:root[data-theme="instrument"] .welcome-features { margin-top: 0; padding-top: 24px; }
+:root[data-theme="instrument"] .welcome-features svg { color: var(--muted); }
+:root[data-theme="instrument"] .viewer {
+  --paper: #353a34; --panel: #272c26; --bg: #1c201b; --control-bottom: #2c312b;
+  --text: #f2f3ed; --muted: #bdc3b8; --line: #4c5348; --edge-light: #596052; --accent: #9dbbff;
+  padding-block: 120px 20px;
+}
+:root[data-theme="instrument"] :is(.viewer-tool-dock, .viewer-metadata, .viewer-nav, .face-editor, .screenshot-category-editor) {
+  background: var(--paper); color: var(--text); border: 1px solid var(--line); border-radius: 7px; box-shadow: var(--raised);
+}
+:root[data-theme="instrument"] .viewer:not(.viewer-media-only) :is(.viewer-image-shell, .viewer-video-shell, .custom-video-player) { max-height: calc(100dvh - 150px); }
+:root[data-theme="instrument"] .viewer.viewer-media-only { padding: 0; }
+:root[data-theme="instrument"] .care-dashboard.page {
+  --cd-ink: var(--text); --cd-muted: var(--muted); --cd-surface: var(--paper); --cd-line: var(--line);
+  color: var(--text); background: var(--bg);
+}
+:root[data-theme="instrument"] :is(.cd-refresh, .cd-unlock) {
+  color: var(--text); border-radius: 6px; background: linear-gradient(var(--paper), var(--control-bottom)); box-shadow: var(--raised);
+}
+:root[data-theme="instrument"] select:not([multiple]):not([size]) {
+  appearance: none; padding-right: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='m3 4 3 3 3-3' fill='none' stroke='%23777d74' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 10px center;
+}
+@media (max-width: 760px) {
+  :root[data-theme="instrument"] .viewer:not(.viewer-media-only) { padding-block: 168px 16px; }
+  :root[data-theme="instrument"] .viewer:not(.viewer-media-only) :is(.viewer-image-shell, .viewer-video-shell, .custom-video-player) { max-height: calc(100dvh - 190px); }
+}
+
+/* One uninterrupted titlebar; navigation begins beneath it. The native shell
+   owns the traffic lights and the web toolbar reserves their leading space. */
+:root[data-theme="instrument"] .app-shell { --header-height: 68px; }
+:root[data-theme="instrument"] .app-shell .workspace { padding-top: var(--header-height); }
+:root[data-theme="instrument"] .app-shell .topbar {
+  position: fixed; inset: 0 0 auto; width: 100%; height: var(--header-height);
+  z-index: 45; padding: 10px 20px; gap: 10px;
+}
+:root[data-theme="instrument"] .app-shell .topbar>.icon-button:first-child { display: grid; }
+:root[data-theme="instrument"] .app-shell .topbar>.quick-search { margin: 0; }
+:root[data-theme="instrument"] .app-shell .sidebar {
+  top: var(--header-height); padding-top: 12px;
+}
+:root[data-theme="instrument"] .sidebar nav { margin-top: 0; }
+:root[data-theme="instrument"][data-shell="native"] .app-shell .topbar { padding-left: 100px; }
+@media (max-width: 760px) {
+  :root[data-theme="instrument"] .app-shell { --header-height: 58px; }
+  :root[data-theme="instrument"] .app-shell .topbar { padding: 8px 12px; }
+  :root[data-theme="instrument"] .sidebar-backdrop { top: var(--header-height); }
+}
+:root[data-theme="instrument"][data-shell="native"] .app-shell.sidebar-open .topbar>.icon-button:first-child { display: grid; }

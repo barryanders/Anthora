@@ -1,0 +1,8 @@
+{
+  "appName": "Anthora",
+  "tagline": "Private media library for folders you control",
+  "curatedCollectionSingular": "Album",
+  "curatedCollectionPlural": "Albums",
+  "createAction": "Create Album",
+  "creatingState": "Creating your album…"
+}

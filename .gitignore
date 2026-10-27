@@ -1,0 +1,12 @@
+.DS_Store
+.build/
+dist/
+node_modules/
+Web/dist/
+__pycache__/
+*.pyc
+.env*
+*.sqlite*
+*.db
+Models/
+Vendor/FFmpeg/darwin-arm64/

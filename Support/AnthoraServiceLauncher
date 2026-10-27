@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eu
+
+HERE="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+export PYTHONHOME="$HERE/Python"
+export PYTHONNOUSERSITE=1
+export PYTHONDONTWRITEBYTECODE=1
+export ANTHORA_SEMANTIC_ENABLED=0
+exec "$HERE/Python/bin/python3" "$HERE/anthora_service.py" "$@"
