@@ -46,16 +46,18 @@ fi
 if [[ -d Models/FaceEmbedding.mlpackage ]]; then
   cp -R Models/FaceEmbedding.mlpackage "$OUTPUT/Contents/Resources/"
 fi
-codesign --force --sign - --identifier com.goodburrow.anthora.media-reader \
-  --requirements '=designated => identifier "com.goodburrow.anthora.media-reader"' \
+# Remove compiler source paths from distributable native binaries before signing.
+strip -S "$OUTPUT/Contents/MacOS/Anthora" "$OUTPUT/Contents/Helpers/AnthoraMediaReader" "$OUTPUT/Contents/Helpers/AnthoraPhotosBridge"
+codesign --force --sign - --identifier com.anthora.media-reader \
+  --requirements '=designated => identifier "com.anthora.media-reader"' \
   "$OUTPUT/Contents/Helpers/AnthoraMediaReader"
-codesign --force --sign - --identifier com.goodburrow.anthora.photos-bridge \
-  --requirements '=designated => identifier "com.goodburrow.anthora.photos-bridge"' \
+codesign --force --sign - --identifier com.anthora.photos-bridge \
+  --requirements '=designated => identifier "com.anthora.photos-bridge"' \
   "$OUTPUT/Contents/Helpers/AnthoraPhotosBridge"
-codesign --force --sign - --identifier com.goodburrow.anthora.ffmpeg \
-  --requirements '=designated => identifier "com.goodburrow.anthora.ffmpeg"' \
+codesign --force --sign - --identifier com.anthora.ffmpeg \
+  --requirements '=designated => identifier "com.anthora.ffmpeg"' \
   "$OUTPUT/Contents/Helpers/AnthoraFFmpeg"
-codesign --force --sign - --identifier com.goodburrow.anthora \
-  --requirements '=designated => identifier "com.goodburrow.anthora"' \
+codesign --force --sign - --identifier com.anthora \
+  --requirements '=designated => identifier "com.anthora"' \
   "$OUTPUT"
 echo "$OUTPUT"

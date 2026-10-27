@@ -15,7 +15,7 @@ export default function BookPrinting({book, saved, busy}) {
         <li><span>3</span><div><strong>Upload and order at {printProvider.name}</strong><p>You choose the file to upload. Printing, payment, and shipping happen on their website.</p></div></li>
       </ol>
       <div className="bk-printer-links"><a className="bk-primary" href={providerLink.href} target="_blank" rel={providerLink.affiliate ? "sponsored noopener noreferrer" : "noopener noreferrer"}>Explore {printProvider.name} <ArrowUpRight size={16}/></a><a href={printProvider.specifications} target="_blank" rel="noopener noreferrer">Size and cover guide <ArrowUpRight size={13}/></a></div>
-      {providerLink.affiliate && <p className="bk-affiliate-disclosure">Barry Anders may earn a commission if you order through this link.</p>}
+      {providerLink.affiliate && <p className="bk-affiliate-disclosure">The developer may earn a commission if you order through this link.</p>}
       <p className="bk-printer-choice">You can also take your PDF to another printer. Check their file requirements before ordering.</p>
     </div>}
   </section>;

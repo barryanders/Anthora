@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0"><dict>
-<key>CFBundleIdentifier</key><string>com.goodburrow.anthora.photos-bridge</string>
+<key>CFBundleIdentifier</key><string>com.anthora.photos-bridge</string>
 <key>CFBundleName</key><string>Anthora Photos Bridge</string>
 <key>CFBundlePackageType</key><string>APPL</string>
-<key>NSPhotoLibraryUsageDescription</key><string>Anthora reads your Photos library so your private iPhone client can browse media stored on this Mac.</string>
+<key>NSPhotoLibraryUsageDescription</key><string>Anthora uses this helper to read photos and videos you authorize.</string>
 </dict></plist>

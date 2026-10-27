@@ -96,8 +96,8 @@ while IFS= read -r binary; do
   fi
 done < <(find "$PYTHON_ROOT" -type f)
 codesign --force --sign - \
-  --identifier com.goodburrow.anthora.service-python \
-  --requirements '=designated => identifier "com.goodburrow.anthora.service-python"' \
+  --identifier com.anthora.service-python \
+  --requirements '=designated => identifier "com.anthora.service-python"' \
   "$PYTHON_ROOT/bin/python3" >/dev/null 2>&1
 
 cp "$ROOT/Service/anthora_service.py" "$DIST_ROOT/anthora_service.py"
