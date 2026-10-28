@@ -6,9 +6,13 @@ A free media library for folders on your Mac. Browse photos and videos, make pho
 
 ## Screenshots
 
+Real app captures. [Explore the full-size showcase](https://barryanders.github.io/anthora/).
+
 ![Media library](docs/screenshots/media-library.jpg)
 
 ![Photo book designs](docs/screenshots/books.jpg)
+
+![Library Care review queues](docs/screenshots/library-care.jpg)
 
 ## Build
 
