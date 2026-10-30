@@ -1,3 +1,10 @@
 # Screenshot sources
 
-Anthora 1.1.1 screenshots reused from the public product website on October 26, 2026. The library and book previews contain sample imagery.
+Captured October 29, 2026 from the actual application interface. Example content
+is used throughout; no private libraries, contacts, cookies, or credentials are
+shown. Images are original browser captures, not AI-generated interface mockups
+or enlarged low-resolution copies. Website presentation keeps the complete
+interface and links to the original capture.
+
+Anthora book previews use the built-in AI-generated sample photos. Existing
+media-library and Library Care captures are retained from the earlier demo library.

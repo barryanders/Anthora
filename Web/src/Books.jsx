@@ -68,7 +68,6 @@ async function api(url, body) {
   );
   const result = await response.json();
   if (!response.ok) {
-    if (result.code === "license_required") window.dispatchEvent(new CustomEvent("anthora-license-required"));
     throw new Error(result.error || "Something went wrong. Please try again.");
   }
   return result;
@@ -383,8 +382,6 @@ function FormatPicker({ value, onChange, compact = false }) {
 export default function Books({
   initialPhotos = [],
   initialContext = null,
-  canCreate = false,
-  onUpgrade = noop,
   onDirty = noop,
   confirmAction,
 }) {
@@ -609,7 +606,6 @@ export default function Books({
     }
   }
   async function save() {
-    if (!canCreate) { onUpgrade(); return false; }
     const snapshot = book;
     setBusy(true);
     setError("");
@@ -629,7 +625,6 @@ export default function Books({
     }
   }
   async function copySavedBook(original) {
-    if (!canCreate) { onUpgrade(); return false; }
     setBusy(true);
     setError("");
     try {
@@ -1073,12 +1068,6 @@ export default function Books({
           </div>
         )}
       </header>
-      {step === "editor" && !canCreate && (
-        <div className="bk-preview-notice" role="status">
-          <span><strong>Free book preview.</strong> Edit every page with your own photos. Saving and PDF export are included.</span>
-          <button onClick={onUpgrade}>Continue</button>
-        </div>
-      )}
       {(message || error) && (
         <div
           role={error ? "alert" : "status"}
@@ -1303,10 +1292,10 @@ export default function Books({
               className="bk-primary bk-wide"
               onClick={() => setStep("photos")}
             >
-              {canCreate ? "Use this design" : "Try with my photos"} <ArrowRight size={17} />
+              Use this design <ArrowRight size={17} />
             </button>
             <p className="bk-reassurance">
-              {canCreate ? "The book grows to fit your photos. Every heading and page is editable." : "Try this design with your photos. Saving and PDF export are free."}
+              The book grows to fit your photos. Every heading and page is editable.
             </p>
             <details className="bk-chapter-list quiet-details"><summary>All pages</summary>
               {design.sequence.map((p, i) => (
@@ -1993,7 +1982,6 @@ export default function Books({
                   className="bk-primary"
                   disabled={busy || empty > 0 || !book.title.trim()}
                   onClick={async () => {
-                    if (!canCreate) { setReview(false); onUpgrade(); return; }
                     setBusy(true);
                     setError("");
                     try {
@@ -2043,9 +2031,7 @@ export default function Books({
                   )}{" "}
                   {busy
                     ? "Preparing PDF…"
-                    : !canCreate
-                      ? "Export PDF"
-                      : pendingPDF
+                    : pendingPDF
                         ? "Save anyway"
                         : "Save PDF"}
                 </button>

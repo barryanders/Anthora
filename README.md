@@ -14,6 +14,11 @@ Real app captures. [Explore the full-size showcase](https://barryanders.github.i
 
 ![Library Care review queues](docs/screenshots/library-care.jpg)
 
+![Travel Journal book preview](docs/screenshots/travel-book.jpg)
+
+![Wedding book preview](docs/screenshots/wedding-book.jpg)
+
+
 ## Build
 
 Requires macOS 14 or later, Apple silicon, Swift 6, Node.js, and Homebrew Python 3.14. The source contains the native app and workers, browser interface, and local service. It excludes private deployment configuration, catalogs, media, and model weights.

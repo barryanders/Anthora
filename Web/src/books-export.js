@@ -14,7 +14,6 @@ async function requireBookExport(signal) {
   const response = await fetch("/api/books/export-check", { method: "POST", signal });
   const result = await response.json();
   if (!response.ok) {
-    if (result.code === "license_required") window.dispatchEvent(new CustomEvent("anthora-license-required"));
     throw new Error(result.error || "Could not check Books access. Try again.");
   }
 }

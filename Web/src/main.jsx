@@ -76,8 +76,6 @@ const api = async (path, options) => {
   const response = await fetch(path, options);
   const payload = await response.json().catch(() => ({}));
   if (!response.ok) {
-    if (payload.code === "license_required")
-      window.dispatchEvent(new CustomEvent("anthora-license-required"));
     throw new Error(payload.error || `Request failed (${response.status})`);
   }
   return payload;
@@ -135,7 +133,6 @@ const formatDate = (timestamp) =>
     : "Not scanned yet";
 const MediaSelectionContext = createContext(null);
 const DialogContext = createContext(null);
-const LicenseContext = createContext({ licensed: true });
 
 const thumbnailQueue = [];
 let activeThumbnailRequests = 0;
@@ -265,9 +262,6 @@ function useDialog() {
   return useContext(DialogContext);
 }
 
-function useLicense() {
-  return useContext(LicenseContext);
-}
 
 
 function searchTitle(filters) {
@@ -384,8 +378,6 @@ function App() {
     "anthology.dismissedOperationId",
     "",
   );
-  const [license, setLicense] = useState({ licensed: true, edition: "free" });
-  const [licenseOpen, setLicenseOpen] = useState(false);
   const [nativeLibraryState, setNativeLibraryState] = useState(null);
   const [nativeLibraryError, setNativeLibraryError] = useState("");
   const refreshNativeLibraries = async () => {
@@ -397,17 +389,9 @@ function App() {
       setNativeLibraryError(error.message || "Libraries could not be loaded.");
     }
   };
-  const refreshLicense = () =>
-    api("/api/license")
-      .then(setLicense)
-      .catch(() => setLicense({ licensed: true, edition: "free" }));
 
   useEffect(() => {
-    refreshLicense();
     refreshNativeLibraries();
-    const openLicense = () => setLicenseOpen(true);
-    window.addEventListener("anthora-license-required", openLicense);
-    return () => window.removeEventListener("anthora-license-required", openLicense);
   }, []);
   const createNativeLibrary = async () => {
     try {
@@ -668,7 +652,7 @@ function App() {
   ];
 
   return (
-    <LicenseContext.Provider value={{ ...license, openLicense: () => setLicenseOpen(true), refreshLicense }}>
+    <>
     <div className={`app-shell ${sidebar ? "sidebar-open" : "sidebar-closed"}`}>
       {sidebar && (
           <button
@@ -828,7 +812,7 @@ function App() {
         {route.crumbs?.[0] === "Library Care" && route.kind !== "cleanup" && (
           <CareQuickSwitcher route={route} navigate={navigate} />
         )}
-        {route.kind === "books" && <Books key={nativeLibraryState?.activeLibraryId || "current"} initialPhotos={bookSelection} initialContext={bookContext} canCreate={license.licensed} onUpgrade={() => setLicenseOpen(true)} onDirty={setBooksDirty} confirmAction={confirmAction} />}
+        {route.kind === "books" && <Books key={nativeLibraryState?.activeLibraryId || "current"} initialPhotos={bookSelection} initialContext={bookContext} onDirty={setBooksDirty} confirmAction={confirmAction} />}
         {route.kind === "home" && (
           <CollectionsHome
             navigate={navigate}
@@ -854,7 +838,7 @@ function App() {
           <PeopleView route={route} navigate={navigate} />
         )}
         {route.kind === "duplicates" && <DuplicatesView route={route} />}
-        {route.kind === "cleanup" && <CleanupDashboard route={route} navigate={navigate} api={api} formatBytes={formatBytes} licensed={license.licensed} onUpgrade={() => setLicenseOpen(true)} />}
+        {route.kind === "cleanup" && <CleanupDashboard route={route} navigate={navigate} api={api} formatBytes={formatBytes} />}
         {route.kind === "impact" && <SpaceImpactView navigate={navigate} />}
         {route.kind === "organization" && <OrganizationView navigate={navigate} />}
         {route.kind === "settings" && (
@@ -891,7 +875,7 @@ function App() {
         />
       )}
     </div>
-    </LicenseContext.Provider>
+    </>
   );
 }
 
@@ -6915,7 +6899,6 @@ function SettingsPage({
   viewerSwipeDirection,
   setViewerSwipeDirection,
 }) {
-  const license = useLicense();
   return (
     <section className="page settings-page">
       <header className="page-heading">

@@ -57,9 +57,6 @@ final class LocalServiceRuntime {
         var environment = ProcessInfo.processInfo.environment
         environment["ANTHORA_DATABASE"] = paths.database.path
         environment["ANTHORA_PARENT_PID"] = String(ProcessInfo.processInfo.processIdentifier)
-        environment["ANTHORA_COMMERCIAL_BUILD"] = "1"
-        // A purchase licenses this Mac, not each portable library package.
-        environment["ANTHORA_LICENSE_PATH"] = paths.applicationSupport.appendingPathComponent("license.json").path
 
         try await runAndWait(
             executable: paths.reader,

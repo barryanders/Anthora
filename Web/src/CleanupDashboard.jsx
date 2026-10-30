@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { ArrowLeft, ArrowUpRight, Check, ChevronDown, Copy, FileWarning, FolderPlus, Image as ImageIcon, LockKeyhole, RefreshCw, RotateCcw, ScanLine, ShieldCheck, Sparkles, ThumbsDown, Trash2, UserRound, Play, HardDrive } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Check, ChevronDown, Copy, FileWarning, FolderPlus, Image as ImageIcon, RefreshCw, RotateCcw, ScanLine, ShieldCheck, Sparkles, ThumbsDown, Trash2, UserRound, Play, HardDrive } from "lucide-react";
 import { analysisState } from "./care-dashboard-model";
 import "./care-dashboard.css";
 
 const number = new Intl.NumberFormat();
-export default function CleanupDashboard({ route, navigate, api, formatBytes, licensed, onUpgrade }) {
+export default function CleanupDashboard({ route, navigate, api, formatBytes }) {
   const scope = route.scope;
   const [data, setData] = useState({});
   const [errors, setErrors] = useState([]);
@@ -268,6 +268,5 @@ export default function CleanupDashboard({ route, navigate, api, formatBytes, li
       <ul>{Object.entries(careStatus?.checks || {}).map(([key,value])=><li key={key}>{({exact:"Exact copies",visual:"Image similarity",video:"Video similarity",quality:"Photo quality",semantic:"Image content"})[key] || key}: {number.format(value.analyzed)} / {number.format(value.total)}</li>)}</ul>
     </details>}
     <p className="care-reassurance">Removed files stay in Recently Deleted for 30 days.</p>
-    {!licensed && <button className="care-upgrade" onClick={onUpgrade}><LockKeyhole size={15}/>About Lifetime cleanup</button>}
   </section>;
 }
